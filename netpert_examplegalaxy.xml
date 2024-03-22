@@ -1,0 +1,39 @@
+<tool id="netpert_examplegalaxy" name="netpert_examplegalaxy" version="0.1.0+galaxy0" python_template_version="3.5" profile="21.05">
+    <description>Checks if a gene is in the input file and if it's human or mouse </description>
+    <requirements>
+        <requirement type="package" version="1.10">pranhav25::netpert_examplegalaxy</requirement>
+    </requirements>
+    <command detect_errors="exit_code"><![CDATA[
+        
+        netpert_examplegalaxy
+        $gene
+        $size
+        ]]>
+    </command>
+    <inputs>
+    
+        <param name="gene" type="text" label="Gene Name" help="This is the gene you want to test." />
+        
+        <param name="size" type="select"  label="Network size" help="This is the network size.">
+            <option value="standard">Standard</option>
+            <option value="reduced">Reduced</option>
+        </param>
+
+    </inputs>
+    <outputs>
+        <data name="outfile" format="csv"/>
+    </outputs>
+    <tests>
+        <test expect_num_outputs="1">
+            <param name="gene" value="7a6ex" />
+            <param name="size" value="standard" />
+            <output name="outfile" file="results.csv" />
+        </test>
+    </tests>
+    <help><![CDATA[
+    Checks if gene is mouse or human
+    ]]></help>
+    <citations>
+        <citation type="doi">10.1038/s41586-021-03451-0</citation>
+    </citations>
+</tool>
